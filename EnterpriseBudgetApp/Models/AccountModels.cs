@@ -25,7 +25,10 @@ namespace EnterpriseBudgetApp.Models
         [Key]
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
         public int UserId { get; set; }
+        public string Name { get; set; }
         public string UserName { get; set; }
+        public string UserEmail { get; set; }
+        public string UserBudget { get; set; }
     }
 
     public class RegisterExternalLoginModel
@@ -74,7 +77,15 @@ namespace EnterpriseBudgetApp.Models
     public class RegisterModel
     {
         [Required]
-        [Display(Name = "User name")]
+        [Display(Name = "Name")]
+        public string Name { get; set; }
+
+        [DataType(DataType.EmailAddress)]
+        [Display(Name = "Email")]
+        public string UserEmail { get; set; }
+
+        [Required]
+        [Display(Name = "Username")]
         public string UserName { get; set; }
 
         [Required]
