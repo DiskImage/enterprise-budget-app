@@ -1,0 +1,45 @@
+﻿@{
+    ViewBag.Title = "Overview";
+}
+
+<hgroup class="title">
+    <h1>@ViewBag.Title</h1>
+</hgroup>
+
+<div id="overview_left">
+    <!--Budget and reports to be displayed-->
+    <div id="budget_overview">
+        <h2>Budget</h2>
+        <!--get budget and display here-->
+        <div class="float-right">$5289.23</div>
+        <h2>Expenses</h2>
+        <!--expense pie chart goes here-->
+        <center>
+            <img src="http://docs.oracle.com/javafx/2/charts/img/pie-sample.png" alt="expense chart" width="200" height="200">
+        </center>
+        <h2>Reports</h2>
+        <a href ="~/Views/Home/Contact">Expense Report</a><br />
+        <a href ="~/Views/Home/Contact">Inflow/Ouflow Report</a>
+    </div>
+</div>
+
+<div id="transactions">
+    <h2>Transactions</h2>
+    <table>
+        <tr>
+            <th>Date</th>
+            <th>Category</th>
+            <th>Description</th>
+            <th>Amount</th>
+        </tr>
+        <tr>
+            <td><a href ="~/Views/Home/Index"></a>1</td>
+            <td>2</td>
+            <td>3</td>
+            <td>4</td>
+        </tr>
+    </table>
+    <div class="float-right">
+        <button type="button" onclick="location.href='http://localhost:1114/Account/Transaction'">Add New</button>
+    </div>
+</div>

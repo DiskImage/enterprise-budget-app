@@ -754,3 +754,43 @@ tr.pager td {
             margin: 0;
         }
 }
+
+
+#overview_left {
+    width: 30%;
+    float: left;
+}
+
+#budget_overview {
+    width: 70%;
+    padding: 10px;
+    
+}
+
+#transactions {
+    width: 70%;
+    float: right;
+}
+
+#transactions table {
+    width: 100%;
+    border-top: 2px solid;
+    border-bottom: 2px solid;
+}
+
+#transactions tr {
+    background-color: #eee;
+}
+#transactions tr:hover {
+    background-color: #ccc;
+}
+#transactions th {
+    text-align: center;
+    background-color: #efeeef;
+}
+#transactions th, #example td {
+    padding: 3px 5px;
+}
+#transactions td:hover {
+    cursor: pointer;
+}

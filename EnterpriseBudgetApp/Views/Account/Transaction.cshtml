@@ -1,0 +1,39 @@
+﻿@*@model BudgetApp.Models.TransactionsTable
+@{
+    ViewBag.Title = "Add Transaction";
+}
+
+<hgroup class="title">
+    <h2>Create a new Transaction.</h2>
+</hgroup>
+
+<form>
+<fieldset>
+        <legend>Transaction Form</legend>
+        <ol>
+            <li>
+                Date<br />
+                @Html.TextBoxFor(m => m.date)
+            </li>
+            <li>
+                Category<br />
+                @Html.TextBoxFor(m => m.CategoryTable.name)
+            </li>
+            <li>
+                Description<br />
+                @Html.TextBoxFor(m => m.desc)
+            </li>
+            <li>
+                Amount<br />
+                @Html.PasswordFor(m => m.amount)
+            </li>
+        </ol>
+        <input type="submit" value="Add Transaction" />
+    </fieldset>
+</form>
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}*@
