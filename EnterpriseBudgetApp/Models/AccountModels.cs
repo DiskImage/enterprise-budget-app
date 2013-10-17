@@ -6,6 +6,7 @@ using System.Data.Entity;
 using System.Globalization;
 using System.Web.Mvc;
 using System.Web.Security;
+using EnterpriseBudgetApp.Models;
 
 namespace EnterpriseBudgetApp.Models
 {
@@ -20,7 +21,7 @@ namespace EnterpriseBudgetApp.Models
     }
 
     [Table("UserProfile")]
-    public class UserProfile
+    /*public class UserProfile
     {
         [Key]
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
@@ -29,7 +30,7 @@ namespace EnterpriseBudgetApp.Models
         public string UserName { get; set; }
         public string UserEmail { get; set; }
         public string UserBudget { get; set; }
-    }
+    }*/
 
     public class RegisterExternalLoginModel
     {
