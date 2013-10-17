@@ -1,4 +1,4 @@
-﻿@*@model BudgetApp.Models.TransactionsTable
+﻿@model EnterpriseBudgetApp.Models.Transaction
 @{
     ViewBag.Title = "Add Transaction";
 }
@@ -13,19 +13,19 @@
         <ol>
             <li>
                 Date<br />
-                @Html.TextBoxFor(m => m.date)
+                @Html.TextBoxFor(m => m.TimeStamp)
             </li>
             <li>
                 Category<br />
-                @Html.TextBoxFor(m => m.CategoryTable.name)
+                @Html.TextBoxFor(m => m.TransType)
             </li>
             <li>
                 Description<br />
-                @Html.TextBoxFor(m => m.desc)
+                @Html.TextBoxFor(m => m.Description)
             </li>
             <li>
                 Amount<br />
-                @Html.PasswordFor(m => m.amount)
+                @Html.PasswordFor(m => m.Amount)
             </li>
         </ol>
         <input type="submit" value="Add Transaction" />
@@ -36,4 +36,4 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
-}*@
+}
