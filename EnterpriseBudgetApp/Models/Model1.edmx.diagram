@@ -4,36 +4,19 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="40b9d8ec9f554c44837f22978d20d4cb" Name="Diagram1">
+      <Diagram DiagramId="40b9d8ec9f554c44837f22978d20d4cb" Name="Diagram1" ZoomLevel="100">
         <EntityTypeShape EntityType="vm343_01aModel.Budget" Width="1.5" PointX="4.125" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="vm343_01aModel.Group" Width="1.5" PointX="1.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="vm343_01aModel.Group" Width="1.5" PointX="1.75" PointY="0.5" IsExpanded="true" />
         <EntityTypeShape EntityType="vm343_01aModel.Transaction" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="vm343_01aModel.TransType" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="vm343_01aModel.UserProfile" PointX="5.125" PointY="4" Width="1.5" />
         <AssociationConnector Association="vm343_01aModel.FK_Budget_UserProfile" />
-        <AssociationConnector ManuallyRouted="true" Association="vm343_01aModel.FK_UserProfile_Group">
-          <ConnectorPoint PointX="3.25" PointY="2.9129850260416652" />
-          <ConnectorPoint PointX="3.9235563875895463" PointY="20.94692625971873" />
-          <ConnectorPoint PointX="3.9297769457437881" PointY="21.113476799898059" />
-          <ConnectorPoint PointX="4.2090625" PointY="28.591127321328038" />
-          <ConnectorPoint PointX="4.2090625" PointY="3.2847705078125" />
-          <ConnectorPoint PointX="5.291666666666667" PointY="3.2847705078124996" />
-          <ConnectorPoint PointX="5.458333333333333" PointY="3.2847705078125" />
-          <ConnectorPoint PointX="5.8754166666666672" PointY="3.2847705078124996" />
-          <ConnectorPoint PointX="6.0420833333333333" PointY="3.2847705078125" />
-          <ConnectorPoint PointX="6.15625" PointY="3.2847705078125" />
-          <ConnectorPoint PointX="6.15625" PointY="4" />
+        <AssociationConnector ManuallyRouted="false" Association="vm343_01aModel.FK_UserProfile_Group">
         </AssociationConnector>
         <AssociationConnector Association="vm343_01aModel.FK_Transaction_TransType" />
         <AssociationConnector Association="vm343_01aModel.FK_Transaction_UserProfile" />
         <EntityTypeShape EntityType="vm343_01aModel.GroupBudget" Width="1.5" PointX="6.5" PointY="0.875" />
-        <AssociationConnector Association="vm343_01aModel.FK_GroupBudget_Group" ManuallyRouted="true" >
-          <ConnectorPoint PointX="3.25" PointY="2.9129850260416652" />
-          <ConnectorPoint PointX="3.9266666666666667" PointY="24.995135746934675" />
-          <ConnectorPoint PointX="3.9266666666666667" PointY="0.53798502604166654" />
-          <ConnectorPoint PointX="5.95875" PointY="0.53798502604166654" />
-          <ConnectorPoint PointX="5.95875" PointY="26.003127370283341" />
-          <ConnectorPoint PointX="6.5" PointY="2.662985026041667" />
+        <AssociationConnector Association="vm343_01aModel.FK_GroupBudget_Group" ManuallyRouted="false" >
         </AssociationConnector>
       </Diagram>
     </edmx:Diagrams>

@@ -16,7 +16,6 @@ namespace EnterpriseBudgetApp.Models
     {
         public Group()
         {
-            this.Transactions = new HashSet<Transaction>();
             this.UserProfiles = new HashSet<UserProfile>();
             this.GroupBudgets = new HashSet<GroupBudget>();
         }
@@ -24,7 +23,6 @@ namespace EnterpriseBudgetApp.Models
         public int GroupId { get; set; }
         public string GroupName { get; set; }
     
-        public virtual ICollection<Transaction> Transactions { get; set; }
         public virtual ICollection<UserProfile> UserProfiles { get; set; }
         public virtual ICollection<GroupBudget> GroupBudgets { get; set; }
     }

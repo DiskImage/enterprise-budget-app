@@ -20,10 +20,6 @@
             <End Role="Group" EntitySet="Group" />
             <End Role="GroupBudget" EntitySet="GroupBudget" />
           </AssociationSet>
-          <AssociationSet Name="FK_Transaction_Group" Association="vm343_01aModel.Store.FK_Transaction_Group">
-            <End Role="Group" EntitySet="Group" />
-            <End Role="Transaction" EntitySet="Transaction" />
-          </AssociationSet>
           <AssociationSet Name="FK_Transaction_TransType" Association="vm343_01aModel.Store.FK_Transaction_TransType">
             <End Role="TransType" EntitySet="TransType" />
             <End Role="Transaction" EntitySet="Transaction" />
@@ -65,7 +61,6 @@
             <PropertyRef Name="TransId" />
           </Key>
           <Property Name="TransId" Type="int" Nullable="false" />
-          <Property Name="GroupId" Type="int" />
           <Property Name="AcctId" Type="int" Nullable="false" />
           <Property Name="Description" Type="nvarchar" MaxLength="50" />
           <Property Name="Amount" Type="decimal" Nullable="false" />
@@ -111,18 +106,6 @@
               <PropertyRef Name="GroupId" />
             </Principal>
             <Dependent Role="GroupBudget">
-              <PropertyRef Name="GroupId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Transaction_Group">
-          <End Role="Group" Type="vm343_01aModel.Store.Group" Multiplicity="0..1" />
-          <End Role="Transaction" Type="vm343_01aModel.Store.Transaction" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Group">
-              <PropertyRef Name="GroupId" />
-            </Principal>
-            <Dependent Role="Transaction">
               <PropertyRef Name="GroupId" />
             </Dependent>
           </ReferentialConstraint>
@@ -177,10 +160,6 @@
             <End EntitySet="UserProfiles" Role="UserProfile" />
             <End EntitySet="Budgets" Role="Budget" />
           </AssociationSet>
-          <AssociationSet Name="FK_Transaction_Group" Association="vm343_01aModel.FK_Transaction_Group">
-            <End Role="Group" EntitySet="Groups" />
-            <End Role="Transaction" EntitySet="Transactions" />
-          </AssociationSet>
           <AssociationSet Name="FK_UserProfile_Group" Association="vm343_01aModel.FK_UserProfile_Group">
             <End EntitySet="Groups" Role="Group" />
             <End EntitySet="UserProfiles" Role="UserProfile" />
@@ -214,7 +193,6 @@
           </Key>
           <Property Name="GroupId" Type="Int32" Nullable="false" />
           <Property Name="GroupName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
-          <NavigationProperty Name="Transactions" Relationship="vm343_01aModel.FK_Transaction_Group" FromRole="Group" ToRole="Transaction" />
           <NavigationProperty Name="UserProfiles" Relationship="vm343_01aModel.FK_UserProfile_Group" FromRole="Group" ToRole="UserProfile" />
           <NavigationProperty Name="GroupBudgets" Relationship="vm343_01aModel.FK_GroupBudget_Group" FromRole="Group" ToRole="GroupBudget" />
         </EntityType>
@@ -223,13 +201,11 @@
             <PropertyRef Name="TransId" />
           </Key>
           <Property Name="TransId" Type="Int32" Nullable="false" />
-          <Property Name="GroupId" Type="Int32" />
           <Property Name="AcctId" Type="Int32" Nullable="false" />
           <Property Name="Description" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
           <Property Name="Amount" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
           <Property Name="TransType" Type="Int32" Nullable="false" />
           <Property Name="TimeStamp" Type="DateTime" Precision="0" />
-          <NavigationProperty Name="Group" Relationship="vm343_01aModel.FK_Transaction_Group" FromRole="Transaction" ToRole="Group" />
           <NavigationProperty Name="TransType1" Relationship="vm343_01aModel.FK_Transaction_TransType" FromRole="Transaction" ToRole="TransType" />
           <NavigationProperty Name="UserProfile" Relationship="vm343_01aModel.FK_Transaction_UserProfile" FromRole="Transaction" ToRole="UserProfile" />
         </EntityType>
@@ -265,18 +241,6 @@
             </Principal>
             <Dependent Role="Budget">
               <PropertyRef Name="AcctId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Transaction_Group">
-          <End Type="vm343_01aModel.Group" Role="Group" Multiplicity="0..1" />
-          <End Type="vm343_01aModel.Transaction" Role="Transaction" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Group">
-              <PropertyRef Name="GroupId" />
-            </Principal>
-            <Dependent Role="Transaction">
-              <PropertyRef Name="GroupId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -364,7 +328,6 @@
             <EntityTypeMapping TypeName="vm343_01aModel.Transaction">
               <MappingFragment StoreEntitySet="Transaction">
                 <ScalarProperty Name="TransId" ColumnName="TransId" />
-                <ScalarProperty Name="GroupId" ColumnName="GroupId" />
                 <ScalarProperty Name="AcctId" ColumnName="AcctId" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Amount" ColumnName="Amount" />
