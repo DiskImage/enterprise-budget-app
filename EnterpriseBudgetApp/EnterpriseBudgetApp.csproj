@@ -194,28 +194,6 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
-    <Compile Include="Models\Budget.cs">
-      <DependentUpon>BudgetModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\BudgetModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>BudgetModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\BudgetModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>BudgetModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Group.cs">
-      <DependentUpon>BudgetModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Transaction.cs">
-      <DependentUpon>BudgetModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\TransType.cs">
-      <DependentUpon>BudgetModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -275,23 +253,6 @@
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
-    <EntityDeploy Include="Models\BudgetModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>BudgetModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\BudgetModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>BudgetModel.edmx</DependentUpon>
-      <LastGenOutput>BudgetModel.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\BudgetModel.edmx.diagram">
-      <DependentUpon>BudgetModel.edmx</DependentUpon>
-    </Content>
-    <Content Include="Models\BudgetModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>BudgetModel.edmx</DependentUpon>
-      <LastGenOutput>BudgetModel.cs</LastGenOutput>
-    </Content>
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />
