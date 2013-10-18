@@ -17,6 +17,9 @@ namespace EnterpriseBudgetApp.Controllers
     [InitializeSimpleMembership]
     public class AccountController : Controller
     {
+
+        private vm343_01aEntities db = new vm343_01aEntities();
+
         //
         // GET: /Account/Login
 
@@ -73,6 +76,25 @@ namespace EnterpriseBudgetApp.Controllers
         public ActionResult Transaction()
         {
             return View();
+        }
+
+        //
+        // POST: /Transaction/Create
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Transaction(EnterpriseBudgetApp.Models.Transaction transaction)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Transactions.Add(transaction);
+                db.SaveChanges();
+                return RedirectToAction("Overview", "Account");
+            }
+
+            ViewBag.TransType = new SelectList(db.TransTypes, "TransId", "Name", transaction.TransType);
+            ViewBag.AcctId = new SelectList(db.UserProfiles, "UserId", "UserName", transaction.AcctId);
+            return View(transaction);
         }
 
         //

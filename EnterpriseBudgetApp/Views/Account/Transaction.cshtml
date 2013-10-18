@@ -25,10 +25,10 @@
             </li>
             <li>
                 Amount<br />
-                @Html.PasswordFor(m => m.Amount)
+                @Html.TextBoxFor(m => m.Amount)
             </li>
         </ol>
-        <input type="submit" value="Add Transaction" />
+        <input type="submit" onclick="alert('The Transaction has been processed!')" value="Add Transaction" />
     </fieldset>
 </form>
 
