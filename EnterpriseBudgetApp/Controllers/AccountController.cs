@@ -66,15 +66,6 @@ namespace EnterpriseBudgetApp.Controllers
             return View();
         }
 
-        //POST 
-        [HttpPost]
-        [AllowAnonymous]
-        [ValidateAntiForgeryToken]
-        public ActionResult Overview(EnterpriseBudgetApp.Models.Transaction model)
-        {
-            return RedirectToAction("Transaction", "Account");
-            //return View();
-        }
         //
         // GET: /Account/Transaction
 
