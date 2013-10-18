@@ -19,7 +19,6 @@ namespace EnterpriseBudgetApp.Models
         [Key]
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
         public int TransId { get; set; }
-        public Nullable<int> GroupId { get; set; }
         public int AcctId { get; set; }
         public string Description { get; set; }
         public decimal Amount { get; set; }

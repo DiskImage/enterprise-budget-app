@@ -67,6 +67,15 @@ namespace EnterpriseBudgetApp.Controllers
         }
 
         //
+        // GET: /Account/Transaction
+
+        [AllowAnonymous]
+        public ActionResult Transaction()
+        {
+            return View();
+        }
+
+        //
         // GET: /Account/Register
 
         [AllowAnonymous]
