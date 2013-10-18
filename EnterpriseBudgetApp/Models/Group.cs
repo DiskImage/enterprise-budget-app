@@ -11,6 +11,8 @@ namespace EnterpriseBudgetApp.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
     
     public partial class Group
     {
@@ -19,7 +21,9 @@ namespace EnterpriseBudgetApp.Models
             this.UserProfiles = new HashSet<UserProfile>();
             this.GroupBudgets = new HashSet<GroupBudget>();
         }
-    
+
+        [Key]
+        [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
         public int GroupId { get; set; }
         public string GroupName { get; set; }
     

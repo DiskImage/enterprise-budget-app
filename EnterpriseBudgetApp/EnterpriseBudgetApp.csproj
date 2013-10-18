@@ -189,6 +189,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\TransactionController.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -361,6 +362,11 @@
     <Content Include="Views\Web.config" />
     <Content Include="Views\Account\Overview.cshtml" />
     <Content Include="Views\Account\Transaction.cshtml" />
+    <Content Include="Views\Transaction\Index.cshtml" />
+    <Content Include="Views\Transaction\Details.cshtml" />
+    <Content Include="Views\Transaction\Create.cshtml" />
+    <Content Include="Views\Transaction\Edit.cshtml" />
+    <Content Include="Views\Transaction\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -11,9 +11,14 @@ namespace EnterpriseBudgetApp.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
     
     public partial class GroupBudget
     {
+
+        [Key]
+        [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
         public int GroupBudgetId { get; set; }
         public int GroupId { get; set; }
         public decimal balance { get; set; }
