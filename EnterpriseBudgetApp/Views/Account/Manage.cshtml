@@ -11,6 +11,19 @@
 
 <p>You're logged in as <strong>@User.Identity.Name</strong>.</p>
 
+
+<h3> Budget </h3>
+
+Current Budget: <strong> $500.00</strong> <br />
+
+<input type ="text" /><br />
+
+<input type="submit" value=" Set Budget" />
+
+<br />
+<br />
+<br />
+
 @if (ViewBag.HasLocalPassword)
 {
     @Html.Partial("_ChangePasswordPartial")
