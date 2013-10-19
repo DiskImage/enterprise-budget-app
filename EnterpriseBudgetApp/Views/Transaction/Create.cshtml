@@ -13,9 +13,8 @@
     <fieldset>
         <legend>Transaction</legend>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.TransId)
-        </div>
+        <div>  </div>
+        <div>TransId</div>
         <div class="editor-field">
             @Html.EditorFor(model => model.TransId)
             @Html.ValidationMessageFor(model => model.TransId)
@@ -29,17 +28,13 @@
             @Html.ValidationMessageFor(model => model.AcctId)
         </div>*@
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Description)
-        </div>
+        <div>Description</div>
         <div class="editor-field">
             @Html.EditorFor(model => model.Description)
             @Html.ValidationMessageFor(model => model.Description)
         </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Amount)
-        </div>
+        <div>Amount</div>
         <div class="editor-field">
             @Html.EditorFor(model => model.Amount)
             @Html.ValidationMessageFor(model => model.Amount)
@@ -53,12 +48,15 @@
             @Html.ValidationMessageFor(model => model.TransType)
         </div>*@
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.TimeStamp)
-        </div>
+        <div>Date</div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.TimeStamp)
-            @Html.ValidationMessageFor(model => model.TimeStamp)
+            <input type="text" id="dp" />
+
+            <script type="text/javascript">
+                $(function() {
+                    $('#dp').datepicker();
+                });
+            </script>
         </div>
 
         <p>
