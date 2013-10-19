@@ -11,19 +11,19 @@ namespace EnterpriseBudgetApp.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
     
     public partial class Transaction
     {
-        [Key]
-        [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
+
+        [System.ComponentModel.DataAnnotations.Key]
+        [System.ComponentModel.DataAnnotations.Schema.DatabaseGenerated(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity)]
         public int TransId { get; set; }
         public int AcctId { get; set; }
         public string Description { get; set; }
         public decimal Amount { get; set; }
         public int TransType { get; set; }
         public Nullable<System.DateTime> TimeStamp { get; set; }
+        public int PrimaryKey { get { return TransId; } }
     
         public virtual TransType TransType1 { get; set; }
         public virtual UserProfile UserProfile { get; set; }

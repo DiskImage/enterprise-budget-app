@@ -11,8 +11,6 @@ namespace EnterpriseBudgetApp.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
     
     public partial class UserProfile
     {
@@ -22,12 +20,13 @@ namespace EnterpriseBudgetApp.Models
             this.Transactions = new HashSet<Transaction>();
         }
 
-        [Key]
-        [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
+
+        [System.ComponentModel.DataAnnotations.Key]
+        [System.ComponentModel.DataAnnotations.Schema.DatabaseGenerated(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity)]
         public int UserId { get; set; }
         public string UserName { get; set; }
         public string UserEmail { get; set; }
-        public int UserBudget { get; set; }
+        public Nullable<int> UserBudget { get; set; }
         public string Name { get; set; }
         public Nullable<int> GroupId { get; set; }
     

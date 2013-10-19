@@ -37,7 +37,7 @@
           <Key>
             <PropertyRef Name="BudgetId" />
           </Key>
-          <Property Name="BudgetId" Type="int" Nullable="false" />
+          <Property Name="BudgetId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="AcctId" Type="int" Nullable="false" />
           <Property Name="Balance" Type="decimal" Nullable="false" />
         </EntityType>
@@ -45,7 +45,7 @@
           <Key>
             <PropertyRef Name="GroupId" />
           </Key>
-          <Property Name="GroupId" Type="int" Nullable="false" />
+          <Property Name="GroupId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="GroupName" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="GroupBudget">
@@ -53,14 +53,14 @@
             <PropertyRef Name="GroupBudgetId" />
           </Key>
           <Property Name="GroupBudgetId" Type="int" Nullable="false" />
-          <Property Name="GroupId" Type="int" Nullable="false" />
+          <Property Name="GroupId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="balance" Type="decimal" Nullable="false" />
         </EntityType>
         <EntityType Name="Transaction">
           <Key>
             <PropertyRef Name="TransId" />
           </Key>
-          <Property Name="TransId" Type="int" Nullable="false" />
+          <Property Name="TransId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="AcctId" Type="int" Nullable="false" />
           <Property Name="Description" Type="nvarchar" MaxLength="50" />
           <Property Name="Amount" Type="decimal" Nullable="false" />
@@ -71,7 +71,7 @@
           <Key>
             <PropertyRef Name="TransId" />
           </Key>
-          <Property Name="TransId" Type="int" Nullable="false" />
+          <Property Name="TransId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
           <Property Name="Description" Type="nvarchar" MaxLength="50" />
         </EntityType>
@@ -83,7 +83,7 @@
           <Property Name="GroupId" Type="int" />
           <Property Name="UserName" Type="nvarchar" Nullable="false" MaxLength="56" />
           <Property Name="UserEmail" Type="nvarchar" Nullable="false" MaxLength="50" />
-          <Property Name="UserBudget" Type="int" Nullable="false" />
+          <Property Name="UserBudget" Type="int" />
           <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
         </EntityType>
         <Association Name="FK_Budget_UserProfile">
@@ -225,7 +225,7 @@
           <Property Name="UserId" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
           <Property Name="UserName" Nullable="false" MaxLength="56" FixedLength="false" Unicode="true" Type="String" />
           <Property Name="UserEmail" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" Type="String" />
-          <Property Name="UserBudget" Nullable="false" Type="Int32" />
+          <Property Name="UserBudget" Type="Int32" />
           <Property Name="Name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" Type="String" />
           <NavigationProperty Name="Budgets" Relationship="vm343_01aModel.FK_Budget_UserProfile" FromRole="UserProfile" ToRole="Budget" />
           <Property Name="GroupId" Type="Int32" />

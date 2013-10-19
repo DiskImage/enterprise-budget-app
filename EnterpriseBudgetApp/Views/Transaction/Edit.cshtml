@@ -21,13 +21,14 @@
             @Html.ValidationMessageFor(model => model.TransId)
         </div>
 
-        <div class="editor-label">
+        @Html.Label("Username: "+ Model.UserProfile.UserName)
+        @*<div class="editor-label">
             @Html.LabelFor(model => model.AcctId, "UserProfile")
         </div>
         <div class="editor-field">
-            @Html.DropDownList("AcctId", String.Empty)
+            @Html.LabelFor(model => model.AcctId, Model.UserProfile.UserName)
             @Html.ValidationMessageFor(model => model.AcctId)
-        </div>
+        </div>*@
 
         <div class="editor-label">
             @Html.LabelFor(model => model.Description)
