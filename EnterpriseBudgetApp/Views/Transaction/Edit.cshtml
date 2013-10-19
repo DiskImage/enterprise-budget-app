@@ -1,4 +1,11 @@
-﻿@model EnterpriseBudgetApp.Models.Transaction
+﻿<script type="text/javascript">
+                $(function() {
+                    $('#TimeStamp').datetimepicker({
+                        timeFormat: 'hh:mmZ'
+                    });
+                });
+            </script>
+@model EnterpriseBudgetApp.Models.Transaction
 
 @{
     ViewBag.Title = "Edit";

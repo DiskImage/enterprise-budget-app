@@ -1,4 +1,11 @@
-﻿@model EnterpriseBudgetApp.Models.Transaction
+﻿<script type="text/javascript">
+                $(function() {
+                    $('#TimeStamp').datetimepicker({
+                        timeFormat: 'hh:mm tt z'
+                    });
+                });
+            </script>
+@model EnterpriseBudgetApp.Models.Transaction
 
 @{
     ViewBag.Title = "Create";
@@ -13,7 +20,7 @@
     <fieldset>
         <legend>Transaction</legend>
 
-        <div>  </div>
+        
         <div>TransId</div>
         <div class="editor-field">
             @Html.EditorFor(model => model.TransId)
@@ -48,15 +55,12 @@
             @Html.ValidationMessageFor(model => model.TransType)
         </div>
 
-        <div>Date</div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.TimeStamp)
+        </div>
         <div class="editor-field">
-            <input type="text" id="dp" />
-
-            <script type="text/javascript">
-                $(function() {
-                    $('#dp').datepicker();
-                });
-            </script>
+            @Html.EditorFor(model => model.TimeStamp)
+            @Html.ValidationMessageFor(model => model.TimeStamp)
         </div>
 
         <p>
