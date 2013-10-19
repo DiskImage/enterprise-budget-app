@@ -5,6 +5,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using EnterpriseBudgetApp.Models;
 
 namespace EnterpriseBudgetApp.Controllers
@@ -52,6 +53,9 @@ namespace EnterpriseBudgetApp.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(Transaction transaction)
         {
+            /*MembershipUser user = Membership.GetUser();
+            string id = user.ProviderUserKey.ToString();*/
+            transaction.AcctId = (int) Membership.GetUser().ProviderUserKey;
             if (ModelState.IsValid)
             {
                 db.Transactions.Add(transaction);
@@ -70,6 +74,7 @@ namespace EnterpriseBudgetApp.Controllers
         public ActionResult Edit(int id = 0)
         {
             Transaction transaction = db.Transactions.Find(id);
+            transaction.AcctId = (int)Membership.GetUser().ProviderUserKey;
             if (transaction == null)
             {
                 return HttpNotFound();
@@ -86,6 +91,7 @@ namespace EnterpriseBudgetApp.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(Transaction transaction)
         {
+            transaction.AcctId = (int) Membership.GetUser().ProviderUserKey;
             if (ModelState.IsValid)
             {
                 db.Entry(transaction).State = EntityState.Modified;

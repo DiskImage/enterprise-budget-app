@@ -11,8 +11,6 @@ namespace EnterpriseBudgetApp.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
     
     public partial class TransType
     {
@@ -21,8 +19,9 @@ namespace EnterpriseBudgetApp.Models
             this.Transactions = new HashSet<Transaction>();
         }
 
-        [Key]
-        [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
+
+        [System.ComponentModel.DataAnnotations.Key]
+        [System.ComponentModel.DataAnnotations.Schema.DatabaseGenerated(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity)]
         public int TransId { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
