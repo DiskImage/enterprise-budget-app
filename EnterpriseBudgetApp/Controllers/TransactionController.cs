@@ -10,18 +10,31 @@ using EnterpriseBudgetApp.Models;
 
 namespace EnterpriseBudgetApp.Controllers
 {
+    [Authorize]
     public class TransactionController : Controller
     {
         private vm343_01aEntities db = new vm343_01aEntities();
 
         //
         // GET: /Transaction/
-
+        
         public ActionResult Index()
         {
             var transactions = db.Transactions.Include(t => t.TransType1).Include(t => t.UserProfile);
             return View(transactions.ToList());
         }
+
+        /*
+        //
+        // GET: /Transaction/Individual/
+
+        public ActionResult Index()//Individual
+        {
+            int currentUserId = (int) Membership.GetUser().ProviderUserKey;
+            var transactions = db.Transactions.Include(t => t.TransType1).Include(t => t.UserProfile);
+            return View(transactions.Where(t => t.AcctId.Equals(currentUserId)).ToList());
+        }
+        */
 
         //
         // GET: /Transaction/Details/5
