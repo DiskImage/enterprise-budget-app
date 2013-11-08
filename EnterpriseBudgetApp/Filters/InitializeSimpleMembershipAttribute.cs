@@ -25,11 +25,12 @@ namespace EnterpriseBudgetApp.Filters
         {
             public SimpleMembershipInitializer()
             {
-                Database.SetInitializer<UsersContext>(null);
-
+//                Database.SetInitializer<UsersContext>(null);
+                Database.SetInitializer<vm343_01aEntities>(null);
                 try
                 {
-                    using (var context = new UsersContext())
+//                    using (var context = new UsersContext())
+                    using (var context = new vm343_01aEntities())
                     {
                         if (!context.Database.Exists())
                         {

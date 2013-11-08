@@ -10,6 +10,7 @@ using EnterpriseBudgetApp.Models;
 
 namespace EnterpriseBudgetApp.Models
 {
+    /*
     public class UsersContext : DbContext
     {
         public UsersContext()
@@ -19,6 +20,7 @@ namespace EnterpriseBudgetApp.Models
 
         public DbSet<UserProfile> UserProfiles { get; set; }
     }
+    */
 
     [Table("UserProfile")]
     /*public class UserProfile

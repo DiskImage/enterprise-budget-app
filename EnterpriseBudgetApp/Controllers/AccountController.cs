@@ -303,7 +303,8 @@ namespace EnterpriseBudgetApp.Controllers
             if (ModelState.IsValid)
             {
                 // Insert a new user into the database
-                using (UsersContext db = new UsersContext())
+//                using (UsersContext db = new UsersContext())
+                using (vm343_01aEntities db = new vm343_01aEntities())
                 {
                     UserProfile user = db.UserProfiles.FirstOrDefault(u => u.UserName.ToLower() == model.UserName.ToLower());
                     // Check if user already exists

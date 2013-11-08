@@ -24,7 +24,7 @@ namespace EnterpriseBudgetApp.Models
         {
             throw new UnintentionalCodeFirstException();
         }
-    
+
         public DbSet<Budget> Budgets { get; set; }
         public DbSet<Group> Groups { get; set; }
         public DbSet<Transaction> Transactions { get; set; }
