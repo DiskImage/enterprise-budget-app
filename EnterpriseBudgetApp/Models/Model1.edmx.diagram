@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="40b9d8ec9f554c44837f22978d20d4cb" Name="Diagram1" ZoomLevel="100">
+      <Diagram DiagramId="40b9d8ec9f554c44837f22978d20d4cb" Name="Diagram1" ZoomLevel="64">
         <EntityTypeShape EntityType="vm343_01aModel.Budget" Width="1.5" PointX="4.125" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="vm343_01aModel.Group" Width="1.5" PointX="1.75" PointY="0.5" IsExpanded="true" />
         <EntityTypeShape EntityType="vm343_01aModel.Transaction" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
@@ -18,7 +18,21 @@
         <EntityTypeShape EntityType="vm343_01aModel.GroupBudget" Width="1.5" PointX="6.5" PointY="0.875" />
         <AssociationConnector Association="vm343_01aModel.FK_GroupBudget_Group" ManuallyRouted="false" >
         </AssociationConnector>
-      </Diagram>
+        <EntityTypeShape EntityType="vm343_01aModel.Role" Width="1.5" PointX="0.625" PointY="6.625" />
+        <EntityTypeShape EntityType="vm343_01aModel.Budget_Transaction" Width="1.5" PointX="8.125" PointY="8.375" />
+        <EntityTypeShape EntityType="vm343_01aModel.Group_Users" Width="1.5" PointX="0.5" PointY="9.875" />
+        <EntityTypeShape EntityType="vm343_01aModel.GroupBudget_Transaction" Width="1.5" PointX="3" PointY="10.625" />
+        <EntityTypeShape EntityType="vm343_01aModel.User_Budget" Width="1.5" PointX="5.875" PointY="11.375" />
+        <AssociationConnector Association="vm343_01aModel.FK_Budget_Transaction_Budget" />
+        <AssociationConnector Association="vm343_01aModel.FK_User_Budget_Budget" />
+        <AssociationConnector Association="vm343_01aModel.FK_Budget_Transaction_Budget1" />
+        <AssociationConnector Association="vm343_01aModel.FK_Group_Users_Group" />
+        <AssociationConnector Association="vm343_01aModel.FK_Group_Users_Role" />
+        <AssociationConnector Association="vm343_01aModel.FK_Group_Users_UserProfile" />
+        <AssociationConnector Association="vm343_01aModel.FK_GroupBudget_Transaction_GroupBudget" />
+        <AssociationConnector Association="vm343_01aModel.FK_GroupBudget_Transaction_Transaction" />
+        <AssociationConnector Association="vm343_01aModel.FK_User_Budget_UserProfile" />
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

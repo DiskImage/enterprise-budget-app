@@ -18,8 +18,8 @@ namespace EnterpriseBudgetApp.Models
         {
             this.UserProfiles = new HashSet<UserProfile>();
             this.GroupBudgets = new HashSet<GroupBudget>();
+            this.Group_Users = new HashSet<Group_Users>();
         }
-
 
         [System.ComponentModel.DataAnnotations.Key]
         [System.ComponentModel.DataAnnotations.Schema.DatabaseGenerated(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity)]
@@ -28,5 +28,6 @@ namespace EnterpriseBudgetApp.Models
     
         public virtual ICollection<UserProfile> UserProfiles { get; set; }
         public virtual ICollection<GroupBudget> GroupBudgets { get; set; }
+        public virtual ICollection<Group_Users> Group_Users { get; set; }
     }
 }

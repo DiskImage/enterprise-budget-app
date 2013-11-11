@@ -14,6 +14,10 @@ namespace EnterpriseBudgetApp.Models
     
     public partial class GroupBudget
     {
+        public GroupBudget()
+        {
+            this.GroupBudget_Transaction = new HashSet<GroupBudget_Transaction>();
+        }
 
         [System.ComponentModel.DataAnnotations.Key]
         [System.ComponentModel.DataAnnotations.Schema.DatabaseGenerated(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity)]
@@ -22,5 +26,6 @@ namespace EnterpriseBudgetApp.Models
         public decimal balance { get; set; }
     
         public virtual Group Group { get; set; }
+        public virtual ICollection<GroupBudget_Transaction> GroupBudget_Transaction { get; set; }
     }
 }

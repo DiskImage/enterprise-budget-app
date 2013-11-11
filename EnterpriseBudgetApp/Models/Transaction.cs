@@ -14,6 +14,11 @@ namespace EnterpriseBudgetApp.Models
     
     public partial class Transaction
     {
+        public Transaction()
+        {
+            this.Budget_Transaction = new HashSet<Budget_Transaction>();
+            this.GroupBudget_Transaction = new HashSet<GroupBudget_Transaction>();
+        }
 
         [System.ComponentModel.DataAnnotations.Key]
         [System.ComponentModel.DataAnnotations.Schema.DatabaseGenerated(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity)]
@@ -27,5 +32,7 @@ namespace EnterpriseBudgetApp.Models
     
         public virtual TransType TransType1 { get; set; }
         public virtual UserProfile UserProfile { get; set; }
+        public virtual ICollection<Budget_Transaction> Budget_Transaction { get; set; }
+        public virtual ICollection<GroupBudget_Transaction> GroupBudget_Transaction { get; set; }
     }
 }

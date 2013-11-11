@@ -7,18 +7,51 @@
     <Schema Namespace="vm343_01aModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="vm343_01aModelStoreContainer">
           <EntitySet Name="Budget" EntityType="vm343_01aModel.Store.Budget" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Budget_Transaction" EntityType="vm343_01aModel.Store.Budget_Transaction" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Group" EntityType="vm343_01aModel.Store.Group" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Group_Users" EntityType="vm343_01aModel.Store.Group_Users" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="GroupBudget" EntityType="vm343_01aModel.Store.GroupBudget" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="GroupBudget_Transaction" EntityType="vm343_01aModel.Store.GroupBudget_Transaction" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Role" EntityType="vm343_01aModel.Store.Role" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Transaction" EntityType="vm343_01aModel.Store.Transaction" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="TransType" EntityType="vm343_01aModel.Store.TransType" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="User_Budget" EntityType="vm343_01aModel.Store.User_Budget" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="UserProfile" EntityType="vm343_01aModel.Store.UserProfile" store:Type="Tables" Schema="dbo" />
           <AssociationSet Name="FK_Budget_UserProfile" Association="vm343_01aModel.Store.FK_Budget_UserProfile">
             <End Role="UserProfile" EntitySet="UserProfile" />
             <End Role="Budget" EntitySet="Budget" />
           </AssociationSet>
+          <AssociationSet Name="FK_Budget-Transaction_Budget" Association="vm343_01aModel.Store.FK_Budget-Transaction_Budget">
+            <End Role="Budget" EntitySet="Budget" />
+            <End Role="Budget_Transaction" EntitySet="Budget_Transaction" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Budget-Transaction_Budget1" Association="vm343_01aModel.Store.FK_Budget-Transaction_Budget1">
+            <End Role="Transaction" EntitySet="Transaction" />
+            <End Role="Budget_Transaction" EntitySet="Budget_Transaction" />
+          </AssociationSet>
           <AssociationSet Name="FK_GroupBudget_Group" Association="vm343_01aModel.Store.FK_GroupBudget_Group">
             <End Role="Group" EntitySet="Group" />
             <End Role="GroupBudget" EntitySet="GroupBudget" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GroupBudget-Transaction_GroupBudget" Association="vm343_01aModel.Store.FK_GroupBudget-Transaction_GroupBudget">
+            <End Role="GroupBudget" EntitySet="GroupBudget" />
+            <End Role="GroupBudget_Transaction" EntitySet="GroupBudget_Transaction" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GroupBudget-Transaction_Transaction" Association="vm343_01aModel.Store.FK_GroupBudget-Transaction_Transaction">
+            <End Role="Transaction" EntitySet="Transaction" />
+            <End Role="GroupBudget_Transaction" EntitySet="GroupBudget_Transaction" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Group-Users_Group" Association="vm343_01aModel.Store.FK_Group-Users_Group">
+            <End Role="Group" EntitySet="Group" />
+            <End Role="Group_Users" EntitySet="Group_Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Group-Users_Role" Association="vm343_01aModel.Store.FK_Group-Users_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="Group_Users" EntitySet="Group_Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Group-Users_UserProfile" Association="vm343_01aModel.Store.FK_Group-Users_UserProfile">
+            <End Role="UserProfile" EntitySet="UserProfile" />
+            <End Role="Group_Users" EntitySet="Group_Users" />
           </AssociationSet>
           <AssociationSet Name="FK_Transaction_TransType" Association="vm343_01aModel.Store.FK_Transaction_TransType">
             <End Role="TransType" EntitySet="TransType" />
@@ -27,6 +60,14 @@
           <AssociationSet Name="FK_Transaction_UserProfile" Association="vm343_01aModel.Store.FK_Transaction_UserProfile">
             <End Role="UserProfile" EntitySet="UserProfile" />
             <End Role="Transaction" EntitySet="Transaction" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User-Budget_Budget" Association="vm343_01aModel.Store.FK_User-Budget_Budget">
+            <End Role="Budget" EntitySet="Budget" />
+            <End Role="User_Budget" EntitySet="User_Budget" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User-Budget_UserProfile" Association="vm343_01aModel.Store.FK_User-Budget_UserProfile">
+            <End Role="UserProfile" EntitySet="UserProfile" />
+            <End Role="User_Budget" EntitySet="User_Budget" />
           </AssociationSet>
           <AssociationSet Name="FK_UserProfile_Group" Association="vm343_01aModel.Store.FK_UserProfile_Group">
             <End Role="Group" EntitySet="Group" />
@@ -41,12 +82,30 @@
           <Property Name="AcctId" Type="int" Nullable="false" />
           <Property Name="Balance" Type="decimal" Nullable="false" />
         </EntityType>
+        <EntityType Name="Budget_Transaction">
+          <Key>
+            <PropertyRef Name="Budget_TransactionId" />
+          </Key>
+          <Property Name="Budget_TransactionId" Type="int" Nullable="false" />
+          <Property Name="BudgetId" Type="int" Nullable="false" />
+          <Property Name="TransId" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="Group">
           <Key>
             <PropertyRef Name="GroupId" />
           </Key>
           <Property Name="GroupId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="GroupName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Group_Users">
+          <Key>
+            <PropertyRef Name="Group_UsersId" />
+          </Key>
+          <Property Name="Group_UsersId" Type="int" Nullable="false" />
+          <Property Name="GroupId" Type="int" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="RoleId" Type="int" Nullable="false" />
+          <Property Name="deleted" Type="bit" />
         </EntityType>
         <EntityType Name="GroupBudget">
           <Key>
@@ -55,6 +114,21 @@
           <Property Name="GroupBudgetId" Type="int" Nullable="false" />
           <Property Name="GroupId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="balance" Type="decimal" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GroupBudget_Transaction">
+          <Key>
+            <PropertyRef Name="GroupBudget_TransactionId" />
+          </Key>
+          <Property Name="GroupBudget_TransactionId" Type="int" Nullable="false" />
+          <Property Name="GroupBudgetId" Type="int" />
+          <Property Name="TransId" Type="int" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="RoleId" Type="int" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Transaction">
           <Key>
@@ -65,7 +139,7 @@
           <Property Name="Description" Type="nvarchar" MaxLength="50" />
           <Property Name="Amount" Type="decimal" Nullable="false" />
           <Property Name="TransType" Type="int" Nullable="false" />
-          <Property Name="TimeStamp" Type="date" />
+          <Property Name="TimeStamp" Type="datetime" />
         </EntityType>
         <EntityType Name="TransType">
           <Key>
@@ -74,6 +148,14 @@
           <Property Name="TransId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
           <Property Name="Description" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="User_Budget">
+          <Key>
+            <PropertyRef Name="User_BudgetId" />
+          </Key>
+          <Property Name="User_BudgetId" Type="int" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="BudgetId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="UserProfile">
           <Key>
@@ -98,6 +180,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Budget-Transaction_Budget">
+          <End Role="Budget" Type="vm343_01aModel.Store.Budget" Multiplicity="1" />
+          <End Role="Budget_Transaction" Type="vm343_01aModel.Store.Budget_Transaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Budget">
+              <PropertyRef Name="BudgetId" />
+            </Principal>
+            <Dependent Role="Budget_Transaction">
+              <PropertyRef Name="BudgetId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Budget-Transaction_Budget1">
+          <End Role="Transaction" Type="vm343_01aModel.Store.Transaction" Multiplicity="1" />
+          <End Role="Budget_Transaction" Type="vm343_01aModel.Store.Budget_Transaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Transaction">
+              <PropertyRef Name="TransId" />
+            </Principal>
+            <Dependent Role="Budget_Transaction">
+              <PropertyRef Name="TransId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_GroupBudget_Group">
           <End Role="Group" Type="vm343_01aModel.Store.Group" Multiplicity="1" />
           <End Role="GroupBudget" Type="vm343_01aModel.Store.GroupBudget" Multiplicity="*" />
@@ -107,6 +213,66 @@
             </Principal>
             <Dependent Role="GroupBudget">
               <PropertyRef Name="GroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GroupBudget-Transaction_GroupBudget">
+          <End Role="GroupBudget" Type="vm343_01aModel.Store.GroupBudget" Multiplicity="0..1" />
+          <End Role="GroupBudget_Transaction" Type="vm343_01aModel.Store.GroupBudget_Transaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GroupBudget">
+              <PropertyRef Name="GroupBudgetId" />
+            </Principal>
+            <Dependent Role="GroupBudget_Transaction">
+              <PropertyRef Name="GroupBudgetId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GroupBudget-Transaction_Transaction">
+          <End Role="Transaction" Type="vm343_01aModel.Store.Transaction" Multiplicity="0..1" />
+          <End Role="GroupBudget_Transaction" Type="vm343_01aModel.Store.GroupBudget_Transaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Transaction">
+              <PropertyRef Name="TransId" />
+            </Principal>
+            <Dependent Role="GroupBudget_Transaction">
+              <PropertyRef Name="TransId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Group-Users_Group">
+          <End Role="Group" Type="vm343_01aModel.Store.Group" Multiplicity="1" />
+          <End Role="Group_Users" Type="vm343_01aModel.Store.Group_Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Group">
+              <PropertyRef Name="GroupId" />
+            </Principal>
+            <Dependent Role="Group_Users">
+              <PropertyRef Name="GroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Group-Users_Role">
+          <End Role="Role" Type="vm343_01aModel.Store.Role" Multiplicity="1" />
+          <End Role="Group_Users" Type="vm343_01aModel.Store.Group_Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="RoleId" />
+            </Principal>
+            <Dependent Role="Group_Users">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Group-Users_UserProfile">
+          <End Role="UserProfile" Type="vm343_01aModel.Store.UserProfile" Multiplicity="1" />
+          <End Role="Group_Users" Type="vm343_01aModel.Store.Group_Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserProfile">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Group_Users">
+              <PropertyRef Name="UserId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -131,6 +297,30 @@
             </Principal>
             <Dependent Role="Transaction">
               <PropertyRef Name="AcctId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User-Budget_Budget">
+          <End Role="Budget" Type="vm343_01aModel.Store.Budget" Multiplicity="1" />
+          <End Role="User_Budget" Type="vm343_01aModel.Store.User_Budget" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Budget">
+              <PropertyRef Name="BudgetId" />
+            </Principal>
+            <Dependent Role="User_Budget">
+              <PropertyRef Name="BudgetId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User-Budget_UserProfile">
+          <End Role="UserProfile" Type="vm343_01aModel.Store.UserProfile" Multiplicity="1" />
+          <End Role="User_Budget" Type="vm343_01aModel.Store.User_Budget" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserProfile">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="User_Budget">
+              <PropertyRef Name="UserId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -177,7 +367,48 @@
             <End Role="Group" EntitySet="Groups" />
             <End Role="GroupBudget" EntitySet="GroupBudgets" />
           </AssociationSet>
-        </EntityContainer>
+          <EntitySet Name="Roles" EntityType="vm343_01aModel.Role" />
+          <EntitySet Name="Budget_Transaction" EntityType="vm343_01aModel.Budget_Transaction" />
+          <EntitySet Name="Group_Users" EntityType="vm343_01aModel.Group_Users" />
+          <EntitySet Name="GroupBudget_Transaction" EntityType="vm343_01aModel.GroupBudget_Transaction" />
+          <EntitySet Name="User_Budget" EntityType="vm343_01aModel.User_Budget" />
+          <AssociationSet Name="FK_Budget_Transaction_Budget" Association="vm343_01aModel.FK_Budget_Transaction_Budget">
+            <End Role="Budget" EntitySet="Budgets" />
+            <End Role="Budget_Transaction" EntitySet="Budget_Transaction" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Budget_Budget" Association="vm343_01aModel.FK_User_Budget_Budget">
+            <End Role="Budget" EntitySet="Budgets" />
+            <End Role="User_Budget" EntitySet="User_Budget" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Budget_Transaction_Budget1" Association="vm343_01aModel.FK_Budget_Transaction_Budget1">
+            <End Role="Transaction" EntitySet="Transactions" />
+            <End Role="Budget_Transaction" EntitySet="Budget_Transaction" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Group_Users_Group" Association="vm343_01aModel.FK_Group_Users_Group">
+            <End Role="Group" EntitySet="Groups" />
+            <End Role="Group_Users" EntitySet="Group_Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Group_Users_Role" Association="vm343_01aModel.FK_Group_Users_Role">
+            <End Role="Role" EntitySet="Roles" />
+            <End Role="Group_Users" EntitySet="Group_Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Group_Users_UserProfile" Association="vm343_01aModel.FK_Group_Users_UserProfile">
+            <End Role="UserProfile" EntitySet="UserProfiles" />
+            <End Role="Group_Users" EntitySet="Group_Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GroupBudget_Transaction_GroupBudget" Association="vm343_01aModel.FK_GroupBudget_Transaction_GroupBudget">
+            <End Role="GroupBudget" EntitySet="GroupBudgets" />
+            <End Role="GroupBudget_Transaction" EntitySet="GroupBudget_Transaction" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GroupBudget_Transaction_Transaction" Association="vm343_01aModel.FK_GroupBudget_Transaction_Transaction">
+            <End Role="Transaction" EntitySet="Transactions" />
+            <End Role="GroupBudget_Transaction" EntitySet="GroupBudget_Transaction" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Budget_UserProfile" Association="vm343_01aModel.FK_User_Budget_UserProfile">
+            <End Role="UserProfile" EntitySet="UserProfiles" />
+            <End Role="User_Budget" EntitySet="User_Budget" />
+          </AssociationSet>
+          </EntityContainer>
         <EntityType Name="Budget">
           <Key>
             <PropertyRef Name="BudgetId" />
@@ -186,6 +417,8 @@
           <Property Name="AcctId" Type="Int32" Nullable="false" />
           <Property Name="Balance" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
           <NavigationProperty Name="UserProfile" Relationship="vm343_01aModel.FK_Budget_UserProfile" FromRole="Budget" ToRole="UserProfile" />
+          <NavigationProperty Name="Budget_Transaction" Relationship="vm343_01aModel.FK_Budget_Transaction_Budget" FromRole="Budget" ToRole="Budget_Transaction" />
+          <NavigationProperty Name="User_Budget" Relationship="vm343_01aModel.FK_User_Budget_Budget" FromRole="Budget" ToRole="User_Budget" />
         </EntityType>
         <EntityType Name="Group">
           <Key>
@@ -195,6 +428,7 @@
           <Property Name="GroupName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="UserProfiles" Relationship="vm343_01aModel.FK_UserProfile_Group" FromRole="Group" ToRole="UserProfile" />
           <NavigationProperty Name="GroupBudgets" Relationship="vm343_01aModel.FK_GroupBudget_Group" FromRole="Group" ToRole="GroupBudget" />
+          <NavigationProperty Name="Group_Users" Relationship="vm343_01aModel.FK_Group_Users_Group" FromRole="Group" ToRole="Group_Users" />
         </EntityType>
         <EntityType Name="Transaction">
           <Key>
@@ -205,10 +439,12 @@
           <Property Name="Description" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
           <Property Name="Amount" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
           <Property Name="TransType" Type="Int32" Nullable="false" />
-          <Property Name="TimeStamp" Type="DateTime" Precision="0" />
+          <Property Name="TimeStamp" Type="DateTime" Precision="3" />
           <NavigationProperty Name="TransType1" Relationship="vm343_01aModel.FK_Transaction_TransType" FromRole="Transaction" ToRole="TransType" />
           <NavigationProperty Name="UserProfile" Relationship="vm343_01aModel.FK_Transaction_UserProfile" FromRole="Transaction" ToRole="UserProfile" />
-        </EntityType>
+          <NavigationProperty Name="Budget_Transaction" Relationship="vm343_01aModel.FK_Budget_Transaction_Budget1" FromRole="Transaction" ToRole="Budget_Transaction" />
+          <NavigationProperty Name="GroupBudget_Transaction" Relationship="vm343_01aModel.FK_GroupBudget_Transaction_Transaction" FromRole="Transaction" ToRole="GroupBudget_Transaction" />
+          </EntityType>
         <EntityType Name="TransType">
           <Key>
             <PropertyRef Name="TransId" />
@@ -231,7 +467,9 @@
           <Property Name="GroupId" Type="Int32" />
           <NavigationProperty Name="Group" Relationship="vm343_01aModel.FK_UserProfile_Group" FromRole="UserProfile" ToRole="Group" />
           <NavigationProperty Name="Transactions" Relationship="vm343_01aModel.FK_Transaction_UserProfile" FromRole="UserProfile" ToRole="Transaction" />
-        </EntityType>
+          <NavigationProperty Name="Group_Users" Relationship="vm343_01aModel.FK_Group_Users_UserProfile" FromRole="UserProfile" ToRole="Group_Users" />
+          <NavigationProperty Name="User_Budget" Relationship="vm343_01aModel.FK_User_Budget_UserProfile" FromRole="UserProfile" ToRole="User_Budget" />
+          </EntityType>
         <Association Name="FK_Budget_UserProfile">
           <End Type="vm343_01aModel.UserProfile" Multiplicity="1" Role="UserProfile" />
           <End Type="vm343_01aModel.Budget" Multiplicity="*" Role="Budget" />
@@ -288,6 +526,7 @@
           <Property Type="Int32" Name="GroupId" Nullable="false" />
           <Property Type="Decimal" Name="balance" Nullable="false" Precision="18" Scale="0" />
           <NavigationProperty Name="Group" Relationship="vm343_01aModel.FK_GroupBudget_Group" FromRole="GroupBudget" ToRole="Group" />
+          <NavigationProperty Name="GroupBudget_Transaction" Relationship="vm343_01aModel.FK_GroupBudget_Transaction_GroupBudget" FromRole="GroupBudget" ToRole="GroupBudget_Transaction" />
         </EntityType>
         <Association Name="FK_GroupBudget_Group">
           <End Type="vm343_01aModel.Group" Role="Group" Multiplicity="1" />
@@ -301,7 +540,166 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Type="Int32" Name="RoleId" Nullable="false" />
+          <Property Type="String" Name="Title" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Group_Users" Relationship="vm343_01aModel.FK_Group_Users_Role" FromRole="Role" ToRole="Group_Users" />
+        </EntityType>
+        <EntityType Name="Budget_Transaction">
+          <Key>
+            <PropertyRef Name="Budget_TransactionId" />
+          </Key>
+          <Property Type="Int32" Name="Budget_TransactionId" Nullable="false" />
+          <Property Type="Int32" Name="BudgetId" Nullable="false" />
+          <Property Type="Int32" Name="TransId" Nullable="false" />
+          <NavigationProperty Name="Budget" Relationship="vm343_01aModel.FK_Budget_Transaction_Budget" FromRole="Budget_Transaction" ToRole="Budget" />
+          <NavigationProperty Name="Transaction" Relationship="vm343_01aModel.FK_Budget_Transaction_Budget1" FromRole="Budget_Transaction" ToRole="Transaction" />
+        </EntityType>
+        <EntityType Name="Group_Users">
+          <Key>
+            <PropertyRef Name="Group_UsersId" />
+          </Key>
+          <Property Type="Int32" Name="Group_UsersId" Nullable="false" />
+          <Property Type="Int32" Name="GroupId" Nullable="false" />
+          <Property Type="Int32" Name="UserId" Nullable="false" />
+          <Property Type="Int32" Name="RoleId" Nullable="false" />
+          <Property Type="Boolean" Name="deleted" />
+          <NavigationProperty Name="Group" Relationship="vm343_01aModel.FK_Group_Users_Group" FromRole="Group_Users" ToRole="Group" />
+          <NavigationProperty Name="Role" Relationship="vm343_01aModel.FK_Group_Users_Role" FromRole="Group_Users" ToRole="Role" />
+          <NavigationProperty Name="UserProfile" Relationship="vm343_01aModel.FK_Group_Users_UserProfile" FromRole="Group_Users" ToRole="UserProfile" />
+        </EntityType>
+        <EntityType Name="GroupBudget_Transaction">
+          <Key>
+            <PropertyRef Name="GroupBudget_TransactionId" />
+          </Key>
+          <Property Type="Int32" Name="GroupBudget_TransactionId" Nullable="false" />
+          <Property Type="Int32" Name="GroupBudgetId" />
+          <Property Type="Int32" Name="TransId" />
+          <NavigationProperty Name="GroupBudget" Relationship="vm343_01aModel.FK_GroupBudget_Transaction_GroupBudget" FromRole="GroupBudget_Transaction" ToRole="GroupBudget" />
+          <NavigationProperty Name="Transaction" Relationship="vm343_01aModel.FK_GroupBudget_Transaction_Transaction" FromRole="GroupBudget_Transaction" ToRole="Transaction" />
+        </EntityType>
+        <EntityType Name="User_Budget">
+          <Key>
+            <PropertyRef Name="User_BudgetId" />
+          </Key>
+          <Property Type="Int32" Name="User_BudgetId" Nullable="false" />
+          <Property Type="Int32" Name="UserId" Nullable="false" />
+          <Property Type="Int32" Name="BudgetId" Nullable="false" />
+          <NavigationProperty Name="Budget" Relationship="vm343_01aModel.FK_User_Budget_Budget" FromRole="User_Budget" ToRole="Budget" />
+          <NavigationProperty Name="UserProfile" Relationship="vm343_01aModel.FK_User_Budget_UserProfile" FromRole="User_Budget" ToRole="UserProfile" />
+        </EntityType>
+        <Association Name="FK_Budget_Transaction_Budget">
+          <End Type="vm343_01aModel.Budget" Role="Budget" Multiplicity="1" />
+          <End Type="vm343_01aModel.Budget_Transaction" Role="Budget_Transaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Budget">
+              <PropertyRef Name="BudgetId" />
+            </Principal>
+            <Dependent Role="Budget_Transaction">
+              <PropertyRef Name="BudgetId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Budget_Budget">
+          <End Type="vm343_01aModel.Budget" Role="Budget" Multiplicity="1" />
+          <End Type="vm343_01aModel.User_Budget" Role="User_Budget" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Budget">
+              <PropertyRef Name="BudgetId" />
+            </Principal>
+            <Dependent Role="User_Budget">
+              <PropertyRef Name="BudgetId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Budget_Transaction_Budget1">
+          <End Type="vm343_01aModel.Transaction" Role="Transaction" Multiplicity="1" />
+          <End Type="vm343_01aModel.Budget_Transaction" Role="Budget_Transaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Transaction">
+              <PropertyRef Name="TransId" />
+            </Principal>
+            <Dependent Role="Budget_Transaction">
+              <PropertyRef Name="TransId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Group_Users_Group">
+          <End Type="vm343_01aModel.Group" Role="Group" Multiplicity="1" />
+          <End Type="vm343_01aModel.Group_Users" Role="Group_Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Group">
+              <PropertyRef Name="GroupId" />
+            </Principal>
+            <Dependent Role="Group_Users">
+              <PropertyRef Name="GroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Group_Users_Role">
+          <End Type="vm343_01aModel.Role" Role="Role" Multiplicity="1" />
+          <End Type="vm343_01aModel.Group_Users" Role="Group_Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="RoleId" />
+            </Principal>
+            <Dependent Role="Group_Users">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Group_Users_UserProfile">
+          <End Type="vm343_01aModel.UserProfile" Role="UserProfile" Multiplicity="1" />
+          <End Type="vm343_01aModel.Group_Users" Role="Group_Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserProfile">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Group_Users">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GroupBudget_Transaction_GroupBudget">
+          <End Type="vm343_01aModel.GroupBudget" Role="GroupBudget" Multiplicity="0..1" />
+          <End Type="vm343_01aModel.GroupBudget_Transaction" Role="GroupBudget_Transaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GroupBudget">
+              <PropertyRef Name="GroupBudgetId" />
+            </Principal>
+            <Dependent Role="GroupBudget_Transaction">
+              <PropertyRef Name="GroupBudgetId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GroupBudget_Transaction_Transaction">
+          <End Type="vm343_01aModel.Transaction" Role="Transaction" Multiplicity="0..1" />
+          <End Type="vm343_01aModel.GroupBudget_Transaction" Role="GroupBudget_Transaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Transaction">
+              <PropertyRef Name="TransId" />
+            </Principal>
+            <Dependent Role="GroupBudget_Transaction">
+              <PropertyRef Name="TransId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Budget_UserProfile">
+          <End Type="vm343_01aModel.UserProfile" Role="UserProfile" Multiplicity="1" />
+          <End Type="vm343_01aModel.User_Budget" Role="User_Budget" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserProfile">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="User_Budget">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -366,7 +764,53 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-        </EntityContainerMapping>
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="vm343_01aModel.Role">
+              <MappingFragment StoreEntitySet="Role">
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Budget_Transaction">
+            <EntityTypeMapping TypeName="vm343_01aModel.Budget_Transaction">
+              <MappingFragment StoreEntitySet="Budget_Transaction">
+                <ScalarProperty Name="TransId" ColumnName="TransId" />
+                <ScalarProperty Name="BudgetId" ColumnName="BudgetId" />
+                <ScalarProperty Name="Budget_TransactionId" ColumnName="Budget_TransactionId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Group_Users">
+            <EntityTypeMapping TypeName="vm343_01aModel.Group_Users">
+              <MappingFragment StoreEntitySet="Group_Users">
+                <ScalarProperty Name="deleted" ColumnName="deleted" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+                <ScalarProperty Name="Group_UsersId" ColumnName="Group_UsersId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GroupBudget_Transaction">
+            <EntityTypeMapping TypeName="vm343_01aModel.GroupBudget_Transaction">
+              <MappingFragment StoreEntitySet="GroupBudget_Transaction">
+                <ScalarProperty Name="TransId" ColumnName="TransId" />
+                <ScalarProperty Name="GroupBudgetId" ColumnName="GroupBudgetId" />
+                <ScalarProperty Name="GroupBudget_TransactionId" ColumnName="GroupBudget_TransactionId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User_Budget">
+            <EntityTypeMapping TypeName="vm343_01aModel.User_Budget">
+              <MappingFragment StoreEntitySet="User_Budget">
+                <ScalarProperty Name="BudgetId" ColumnName="BudgetId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="User_BudgetId" ColumnName="User_BudgetId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>

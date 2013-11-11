@@ -14,6 +14,12 @@ namespace EnterpriseBudgetApp.Models
     
     public partial class Budget
     {
+        public Budget()
+        {
+            this.Budget_Transaction = new HashSet<Budget_Transaction>();
+            this.User_Budget = new HashSet<User_Budget>();
+        }
+
         [System.ComponentModel.DataAnnotations.Key]
         [System.ComponentModel.DataAnnotations.Schema.DatabaseGenerated(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity)]
         public int BudgetId { get; set; }
@@ -21,5 +27,7 @@ namespace EnterpriseBudgetApp.Models
         public decimal Balance { get; set; }
     
         public virtual UserProfile UserProfile { get; set; }
+        public virtual ICollection<Budget_Transaction> Budget_Transaction { get; set; }
+        public virtual ICollection<User_Budget> User_Budget { get; set; }
     }
 }

@@ -24,12 +24,17 @@ namespace EnterpriseBudgetApp.Models
         {
             throw new UnintentionalCodeFirstException();
         }
-
+    
         public DbSet<Budget> Budgets { get; set; }
         public DbSet<Group> Groups { get; set; }
         public DbSet<Transaction> Transactions { get; set; }
         public DbSet<TransType> TransTypes { get; set; }
         public DbSet<UserProfile> UserProfiles { get; set; }
         public DbSet<GroupBudget> GroupBudgets { get; set; }
+        public DbSet<Role> Roles { get; set; }
+        public DbSet<Budget_Transaction> Budget_Transaction { get; set; }
+        public DbSet<Group_Users> Group_Users { get; set; }
+        public DbSet<GroupBudget_Transaction> GroupBudget_Transaction { get; set; }
+        public DbSet<User_Budget> User_Budget { get; set; }
     }
 }

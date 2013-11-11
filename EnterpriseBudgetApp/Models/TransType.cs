@@ -19,7 +19,6 @@ namespace EnterpriseBudgetApp.Models
             this.Transactions = new HashSet<Transaction>();
         }
 
-
         [System.ComponentModel.DataAnnotations.Key]
         [System.ComponentModel.DataAnnotations.Schema.DatabaseGenerated(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity)]
         public int TransId { get; set; }
