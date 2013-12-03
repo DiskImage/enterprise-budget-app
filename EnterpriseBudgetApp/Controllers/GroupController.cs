@@ -112,6 +112,7 @@ namespace EnterpriseBudgetApp.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             //TO-MOVE: BLL
+            /*
             Group group = db.Groups.Find(id);
             db.Groups.Remove(group);
             var query = from p in db.Group_Users
@@ -123,6 +124,8 @@ namespace EnterpriseBudgetApp.Controllers
                 db.Group_Users.Remove(to_kill);
             }
             db.SaveChanges();
+            */
+            grpLogic.deleteGroup(id);
             return RedirectToAction("Index");
         }
 

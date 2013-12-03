@@ -39,5 +39,35 @@ namespace EnterpriseBudgetApp.Controllers.BLL
             gu.deleted = false;
             db.Group_Users.Add(gu);
         }
+
+        public void removeGroupMember(Group group, int userId)
+        {
+            var id = group.GroupId;
+            var query = from p in db.Group_Users
+                        where p.GroupId == id
+                        where p.UserId == userId
+                        select p;
+            IEnumerable<Group_Users> grp_usrs = query.ToList();
+            foreach (Group_Users to_kill in grp_usrs)
+            {
+                db.Group_Users.Remove(to_kill);
+            }
+        }
+
+        public void deleteGroup(int id)
+        {
+            Group group = db.Groups.Find(id);
+            //var id = group.GroupId;
+            db.Groups.Remove(group);
+            var query = from p in db.Group_Users
+                        where p.GroupId == id
+                        select p;
+            IEnumerable<Group_Users> grp_usrs = query.ToList();
+            foreach (Group_Users to_kill in grp_usrs)
+            {
+                db.Group_Users.Remove(to_kill);
+            }
+            db.SaveChanges();
+        }
     }
 }
