@@ -10,6 +10,8 @@ using Microsoft.Web.WebPages.OAuth;
 using WebMatrix.WebData;
 using EnterpriseBudgetApp.Filters;
 using EnterpriseBudgetApp.Models;
+using System.Linq;
+using System.Data.Entity;
 
 namespace EnterpriseBudgetApp.Controllers
 {
@@ -66,7 +68,8 @@ namespace EnterpriseBudgetApp.Controllers
         [AllowAnonymous]
         public ActionResult Overview()
         {
-            return View();
+            var transactions = db.Transactions.Include(t => t.TransType1).Include(t => t.UserProfile);
+            return View(transactions.ToList());
         }
 
         //
