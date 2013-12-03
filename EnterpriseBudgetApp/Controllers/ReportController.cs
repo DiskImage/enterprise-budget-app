@@ -9,11 +9,12 @@ using System.Data.Entity;
 using EnterpriseBudgetApp.Models;
 using System.Web.Security;
 using DotNet.Highcharts.Options;
-
+using EnterpriseBudgetApp.Filters;
 
 namespace EnterpriseBudgetApp.Controllers
 {
     [Authorize]
+    [InitializeSimpleMembership]
     public class ReportController : Controller
     {
         private vm343_01aEntities db = new vm343_01aEntities();
@@ -22,32 +23,27 @@ namespace EnterpriseBudgetApp.Controllers
         // GET: /Report/
         public ActionResult Index()
         {
-
             int currentUserId = (int) Membership.GetUser().ProviderUserKey;
             var transactions = db.Transactions.Include(t => t.TransType1).Include(t => t.UserProfile);
             Transaction[] trans = transactions.Where(t => t.AcctId.Equals(currentUserId)).ToArray();
-            String[] cat;
-            Decimal[] data;
-            int i = 0;
+            String[] cat = null ;
+            Object[] data = null;
 
-            foreach (Transaction tr in trans)
+            for(int i = 0; i < trans.Length ; i++)
             {
-
-                cat[i] = tr.TransType;
-                data[i] = tr.Amount;
-
-                i++;
+                 cat[i] = trans[i].TransType.ToString();
+                 data[i] = trans[i].Amount;
             }
 
 
             DotNet.Highcharts.Highcharts chart = new DotNet.Highcharts.Highcharts("chart")
 .SetXAxis(new XAxis
 {
-    Categories = new[] { "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" }
+    Categories = cat
 })
 .SetSeries(new Series
 {
-    Data = new DotNet.Highcharts.Helpers.Data(new object[] { 29.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4 })
+    Data = new DotNet.Highcharts.Helpers.Data( data )
 });
 
             return View(chart);
