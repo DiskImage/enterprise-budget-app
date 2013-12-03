@@ -35,9 +35,15 @@ namespace EnterpriseBudgetApp.Controllers
 
             for (int i = 0; i < trans.Length; i++)
             {
-                data.Add(trans[i].Amount);
-                cat.Add(trans[i].TransType1.Name);
-                dataSeries.Add(new Object[] { trans[i].Amount, trans[i].TransType1.Name });
+                dataSeries.Add(new DotNet.Highcharts.Options.Point
+                                               {
+                                                   Name = trans[i].TransType1.Name,
+                                                   Y = (DotNet.Highcharts.Helpers.Number) 
+                                                        trans[i].Amount,
+                                                   Sliced = true,
+                                                   Selected = true
+                                               });
+                                               
             }
 
 
@@ -70,21 +76,7 @@ namespace EnterpriseBudgetApp.Controllers
 {
     Type = ChartTypes.Pie,
     Name = "Browser share",
-    Data = new Data( new object[]
-                                           {
-                                               new object[] { "Firefox", 45.0 },
-                                               new object[] { "IE", 26.8 },
-                                               new DotNet.Highcharts.Options.Point
-                                               {
-                                                   Name = "Chrome",
-                                                   Y = 12.8,
-                                                   Sliced = true,
-                                                   Selected = true
-                                               },
-                                               new object[] { "Safari", 8.5 },
-                                               new object[] { "Opera", 6.2 },
-                                               new object[] { "Others", 0.7 }
-                                           })
+    Data = new Data(dataSeries.ToArray() )
 
 });
 
