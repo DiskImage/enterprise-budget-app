@@ -10,6 +10,7 @@ using EnterpriseBudgetApp.Models;
 
 namespace EnterpriseBudgetApp.Controllers
 {
+    [Authorize]
     public class GroupController : Controller
     {
         private vm343_01aEntities db = new vm343_01aEntities();
