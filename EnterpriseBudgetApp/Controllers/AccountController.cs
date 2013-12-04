@@ -68,8 +68,9 @@ namespace EnterpriseBudgetApp.Controllers
         [AllowAnonymous]
         public ActionResult Overview()
         {
+            int currentUserId = (int)Membership.GetUser().ProviderUserKey;
             var transactions = db.Transactions.Include(t => t.TransType1).Include(t => t.UserProfile);
-            return View(transactions.ToList());
+            return View(transactions.Where(t => t.AcctId.Equals(currentUserId)).ToList());
         }
 
         //
