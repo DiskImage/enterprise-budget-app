@@ -18,7 +18,7 @@ namespace EnterpriseBudgetApp.Controllers
         //
         // GET: /Transaction/
         
-        public ActionResult Index()
+        public ActionResult Report()
         {
             var transactions = db.Transactions.Include(t => t.TransType1).Include(t => t.UserProfile);
             return View(transactions.ToList());

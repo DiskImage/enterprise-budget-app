@@ -17,6 +17,10 @@
           <EntitySet Name="TransType" EntityType="vm343_01aModel.Store.TransType" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="User_Budget" EntityType="vm343_01aModel.Store.User_Budget" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="UserProfile" EntityType="vm343_01aModel.Store.UserProfile" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_Budget_TransType" Association="vm343_01aModel.Store.FK_Budget_TransType">
+            <End Role="TransType" EntitySet="TransType" />
+            <End Role="Budget" EntitySet="Budget" />
+          </AssociationSet>
           <AssociationSet Name="FK_Budget_UserProfile" Association="vm343_01aModel.Store.FK_Budget_UserProfile">
             <End Role="UserProfile" EntitySet="UserProfile" />
             <End Role="Budget" EntitySet="Budget" />
@@ -31,6 +35,10 @@
           </AssociationSet>
           <AssociationSet Name="FK_GroupBudget_Group" Association="vm343_01aModel.Store.FK_GroupBudget_Group">
             <End Role="Group" EntitySet="Group" />
+            <End Role="GroupBudget" EntitySet="GroupBudget" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GroupBudget_TransType" Association="vm343_01aModel.Store.FK_GroupBudget_TransType">
+            <End Role="TransType" EntitySet="TransType" />
             <End Role="GroupBudget" EntitySet="GroupBudget" />
           </AssociationSet>
           <AssociationSet Name="FK_GroupBudget-Transaction_GroupBudget" Association="vm343_01aModel.Store.FK_GroupBudget-Transaction_GroupBudget">
@@ -81,6 +89,7 @@
           <Property Name="BudgetId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="AcctId" Type="int" Nullable="false" />
           <Property Name="Balance" Type="decimal" Nullable="false" />
+          <Property Name="TransType" Type="int" />
         </EntityType>
         <EntityType Name="Budget_Transaction">
           <Key>
@@ -114,6 +123,7 @@
           <Property Name="GroupBudgetId" Type="int" Nullable="false" />
           <Property Name="GroupId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="balance" Type="decimal" Nullable="false" />
+          <Property Name="TransType" Type="int" />
         </EntityType>
         <EntityType Name="GroupBudget_Transaction">
           <Key>
@@ -168,6 +178,18 @@
           <Property Name="UserBudget" Type="int" />
           <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
         </EntityType>
+        <Association Name="FK_Budget_TransType">
+          <End Role="TransType" Type="vm343_01aModel.Store.TransType" Multiplicity="0..1" />
+          <End Role="Budget" Type="vm343_01aModel.Store.Budget" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TransType">
+              <PropertyRef Name="TransId" />
+            </Principal>
+            <Dependent Role="Budget">
+              <PropertyRef Name="TransType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Budget_UserProfile">
           <End Role="UserProfile" Type="vm343_01aModel.Store.UserProfile" Multiplicity="1" />
           <End Role="Budget" Type="vm343_01aModel.Store.Budget" Multiplicity="*" />
@@ -213,6 +235,18 @@
             </Principal>
             <Dependent Role="GroupBudget">
               <PropertyRef Name="GroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GroupBudget_TransType">
+          <End Role="TransType" Type="vm343_01aModel.Store.TransType" Multiplicity="0..1" />
+          <End Role="GroupBudget" Type="vm343_01aModel.Store.GroupBudget" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TransType">
+              <PropertyRef Name="TransId" />
+            </Principal>
+            <Dependent Role="GroupBudget">
+              <PropertyRef Name="TransType" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -408,6 +442,14 @@
             <End Role="UserProfile" EntitySet="UserProfiles" />
             <End Role="User_Budget" EntitySet="User_Budget" />
           </AssociationSet>
+          <AssociationSet Name="FK_Budget_TransType" Association="vm343_01aModel.FK_Budget_TransType">
+            <End Role="TransType" EntitySet="TransTypes" />
+            <End Role="Budget" EntitySet="Budgets" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GroupBudget_TransType" Association="vm343_01aModel.FK_GroupBudget_TransType">
+            <End Role="TransType" EntitySet="TransTypes" />
+            <End Role="GroupBudget" EntitySet="GroupBudgets" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="Budget">
           <Key>
@@ -419,6 +461,8 @@
           <NavigationProperty Name="UserProfile" Relationship="vm343_01aModel.FK_Budget_UserProfile" FromRole="Budget" ToRole="UserProfile" />
           <NavigationProperty Name="Budget_Transaction" Relationship="vm343_01aModel.FK_Budget_Transaction_Budget" FromRole="Budget" ToRole="Budget_Transaction" />
           <NavigationProperty Name="User_Budget" Relationship="vm343_01aModel.FK_User_Budget_Budget" FromRole="Budget" ToRole="User_Budget" />
+          <Property Type="Int32" Name="TransType" />
+          <NavigationProperty Name="TransType1" Relationship="vm343_01aModel.FK_Budget_TransType" FromRole="Budget" ToRole="TransType" />
         </EntityType>
         <EntityType Name="Group">
           <Key>
@@ -453,6 +497,8 @@
           <Property Name="Name" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
           <Property Name="Description" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="Transactions" Relationship="vm343_01aModel.FK_Transaction_TransType" FromRole="TransType" ToRole="Transaction" />
+          <NavigationProperty Name="Budgets" Relationship="vm343_01aModel.FK_Budget_TransType" FromRole="TransType" ToRole="Budget" />
+          <NavigationProperty Name="GroupBudgets" Relationship="vm343_01aModel.FK_GroupBudget_TransType" FromRole="TransType" ToRole="GroupBudget" />
         </EntityType>
         <EntityType Name="UserProfile">
           <Key>
@@ -527,6 +573,8 @@
           <Property Type="Decimal" Name="balance" Nullable="false" Precision="18" Scale="0" />
           <NavigationProperty Name="Group" Relationship="vm343_01aModel.FK_GroupBudget_Group" FromRole="GroupBudget" ToRole="Group" />
           <NavigationProperty Name="GroupBudget_Transaction" Relationship="vm343_01aModel.FK_GroupBudget_Transaction_GroupBudget" FromRole="GroupBudget" ToRole="GroupBudget_Transaction" />
+          <Property Type="Int32" Name="TransType" />
+          <NavigationProperty Name="TransType1" Relationship="vm343_01aModel.FK_GroupBudget_TransType" FromRole="GroupBudget" ToRole="TransType" />
         </EntityType>
         <Association Name="FK_GroupBudget_Group">
           <End Type="vm343_01aModel.Group" Role="Group" Multiplicity="1" />
@@ -699,6 +747,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Budget_TransType">
+          <End Type="vm343_01aModel.TransType" Role="TransType" Multiplicity="0..1" />
+          <End Type="vm343_01aModel.Budget" Role="Budget" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TransType">
+              <PropertyRef Name="TransId" />
+            </Principal>
+            <Dependent Role="Budget">
+              <PropertyRef Name="TransType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GroupBudget_TransType">
+          <End Type="vm343_01aModel.TransType" Role="TransType" Multiplicity="0..1" />
+          <End Type="vm343_01aModel.GroupBudget" Role="GroupBudget" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TransType">
+              <PropertyRef Name="TransId" />
+            </Principal>
+            <Dependent Role="GroupBudget">
+              <PropertyRef Name="TransType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -708,6 +780,7 @@
           <EntitySetMapping Name="Budgets">
             <EntityTypeMapping TypeName="vm343_01aModel.Budget">
               <MappingFragment StoreEntitySet="Budget">
+                <ScalarProperty Name="TransType" ColumnName="TransType" />
                 <ScalarProperty Name="BudgetId" ColumnName="BudgetId" />
                 <ScalarProperty Name="AcctId" ColumnName="AcctId" />
                 <ScalarProperty Name="Balance" ColumnName="Balance" />
@@ -758,6 +831,7 @@
           <EntitySetMapping Name="GroupBudgets">
             <EntityTypeMapping TypeName="vm343_01aModel.GroupBudget">
               <MappingFragment StoreEntitySet="GroupBudget">
+                <ScalarProperty Name="TransType" ColumnName="TransType" />
                 <ScalarProperty Name="balance" ColumnName="balance" />
                 <ScalarProperty Name="GroupId" ColumnName="GroupId" />
                 <ScalarProperty Name="GroupBudgetId" ColumnName="GroupBudgetId" />
