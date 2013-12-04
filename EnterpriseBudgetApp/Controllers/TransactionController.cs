@@ -73,7 +73,7 @@ namespace EnterpriseBudgetApp.Controllers
             {
                 db.Transactions.Add(transaction);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Overview", "Account");
             }
 
             ViewBag.TransType = new SelectList(db.TransTypes, "TransId", "Name", transaction.TransType);

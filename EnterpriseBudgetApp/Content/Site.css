@@ -785,7 +785,6 @@ tr.pager td {
     background-color: #ccc;
 }
 #transactions th {
-    text-align: center;
     background-color: #efeeef;
 }
 #transactions th, #example td {

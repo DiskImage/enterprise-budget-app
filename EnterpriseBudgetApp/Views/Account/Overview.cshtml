@@ -1,4 +1,11 @@
-﻿@model IEnumerable<EnterpriseBudgetApp.Models.Transaction>
+﻿<script type="text/javascript">
+    $(function () {
+        $('#TimeStamp').datetimepicker({
+            timeFormat: 'hh:mmZ'
+        });
+    });
+</script>
+@model IEnumerable<EnterpriseBudgetApp.Models.Transaction>
 
 @{
     ViewBag.Title = "Overview";
@@ -41,7 +48,8 @@
     </table>
     <div class="float-right">
 
-        <button type="button" onclick="location.href='transaction'">Add New</button>
+        <button type="button">@Html.ActionLink("Add New", "Create", "Transaction")</button>
+        
 
     </div>
 </div>
