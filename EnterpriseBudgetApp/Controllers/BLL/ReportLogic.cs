@@ -36,7 +36,6 @@ namespace EnterpriseBudgetApp.Controllers.BLL
                 DotNet.Highcharts.Helpers.Number num = 0;
                 String name = "";
 
-
                 foreach (Transaction tr in query)
                 {
 

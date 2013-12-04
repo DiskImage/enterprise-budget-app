@@ -34,13 +34,13 @@ namespace EnterpriseBudgetApp.Controllers
             List<Object> dataSeries = rptLogic.getData( currentUserId );
 
 
-
             DotNet.Highcharts.Highcharts chart = new DotNet.Highcharts.Highcharts("chart")
+            .SetTitle( new Title { Text = "Expense Report" } ) 
             .SetPlotOptions(new PlotOptions
             {
                 Pie = new PlotOptionsPie
                 {
-
+                   
                     AllowPointSelect = true,
                     Cursor = Cursors.Pointer,
                     DataLabels = new PlotOptionsPieDataLabels
