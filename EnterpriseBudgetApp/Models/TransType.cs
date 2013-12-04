@@ -17,6 +17,8 @@ namespace EnterpriseBudgetApp.Models
         public TransType()
         {
             this.Transactions = new HashSet<Transaction>();
+            this.Budgets = new HashSet<Budget>();
+            this.GroupBudgets = new HashSet<GroupBudget>();
         }
 
         [System.ComponentModel.DataAnnotations.Key]
@@ -26,5 +28,7 @@ namespace EnterpriseBudgetApp.Models
         public string Description { get; set; }
     
         public virtual ICollection<Transaction> Transactions { get; set; }
+        public virtual ICollection<Budget> Budgets { get; set; }
+        public virtual ICollection<GroupBudget> GroupBudgets { get; set; }
     }
 }

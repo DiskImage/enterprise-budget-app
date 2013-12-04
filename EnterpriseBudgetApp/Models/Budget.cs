@@ -25,9 +25,11 @@ namespace EnterpriseBudgetApp.Models
         public int BudgetId { get; set; }
         public int AcctId { get; set; }
         public decimal Balance { get; set; }
+        public Nullable<int> TransType { get; set; }
     
         public virtual UserProfile UserProfile { get; set; }
         public virtual ICollection<Budget_Transaction> Budget_Transaction { get; set; }
         public virtual ICollection<User_Budget> User_Budget { get; set; }
+        public virtual TransType TransType1 { get; set; }
     }
 }

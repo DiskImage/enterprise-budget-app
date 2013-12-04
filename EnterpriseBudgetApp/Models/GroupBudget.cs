@@ -24,8 +24,10 @@ namespace EnterpriseBudgetApp.Models
         public int GroupBudgetId { get; set; }
         public int GroupId { get; set; }
         public decimal balance { get; set; }
+        public Nullable<int> TransType { get; set; }
     
         public virtual Group Group { get; set; }
         public virtual ICollection<GroupBudget_Transaction> GroupBudget_Transaction { get; set; }
+        public virtual TransType TransType1 { get; set; }
     }
 }

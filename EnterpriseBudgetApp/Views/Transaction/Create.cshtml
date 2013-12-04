@@ -21,13 +21,13 @@
         <legend>Transaction</legend>
 
         
-        <div>TransId</div>
+        @*<div>TransId</div>
         <div class="editor-field">
             @Html.EditorFor(model => model.TransId)
             @Html.ValidationMessageFor(model => model.TransId)
         </div>
 
-        @*div class="editor-label">
+        div class="editor-label">
             @Html.LabelFor(model => model.AcctId, "UserProfile")
         </div>
         <div class="editor-field">
