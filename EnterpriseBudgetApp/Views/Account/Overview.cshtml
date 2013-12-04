@@ -21,14 +21,9 @@
         <h2>Budget</h2>
         <!--get budget and display here-->
         <div class="float-right">$5289.23</div>
-        <h2>Expenses</h2>
-        <!--expense pie chart goes here-->
-        <center>
-            <img src="http://docs.oracle.com/javafx/2/charts/img/pie-sample.png" alt="expense chart" width="200" height="200">
-        </center>
         <h2>Reports</h2>
-        <a href ="~/Views/Home/Contact">Expense Report</a><br />
-        <a href ="~/Views/Home/Contact">Inflow/Ouflow Report</a>
+        @Html.ActionLink("Expense Report", "Chart", "Report")<br />
+        <a href ="~/Views/Home/">Inflow/Ouflow Report</a>
     </div>
 </div>
 
