@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using EnterpriseBudgetApp.Models;
-using System.Collections.Generic;
 using System.Data.Entity;
 
 
@@ -26,7 +25,7 @@ namespace EnterpriseBudgetApp.Controllers.BLL
 
             //Iterates through all the transactions
             //they need to be organized by categories 
-            for (int i = 0; i < 4; i++)
+            for (int i = 1; i < 5; i++)
             {
 
                 var query = from tr in db.Transactions
