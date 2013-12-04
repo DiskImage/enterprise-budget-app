@@ -33,15 +33,41 @@ namespace EnterpriseBudgetApp.Controllers
             List<String> cat = new List<String>();
             List<Object> data = new List<Object>();
 
-            for (int i = 0; i < trans.Length; i++)
+
+            //Iterates through all the transactions
+            //they need to be organized by categories 
+            for (int i = 0; i < 4; i++)
             {
+
+                var query = from tr in db.Transactions
+                            where tr.AcctId == currentUserId
+                            where tr.TransType1.TransId == i
+                            select tr;
+
+                DotNet.Highcharts.Helpers.Number num = 0;
+                String name = "";
+
+                foreach (Transaction tr in query)
+                {
+
+                    num += (DotNet.Highcharts.Helpers.Number) tr.Amount;
+                    name = tr.TransType1.Name;
+
+                }
+
+                if (num == 0)
+                {
+
+                    continue;
+
+                }
+
                 dataSeries.Add(new DotNet.Highcharts.Options.Point
                                                {
-                                                   Name = trans[i].TransType1.Name,
-                                                   Y = (DotNet.Highcharts.Helpers.Number) 
-                                                        trans[i].Amount,
-                                                   Sliced = true,
-                                                   Selected = true
+                                                   Name = name,
+                                                   Y = num,
+                                                   Sliced = false,
+                                                   Selected = false
                                                });
                                                
             }
