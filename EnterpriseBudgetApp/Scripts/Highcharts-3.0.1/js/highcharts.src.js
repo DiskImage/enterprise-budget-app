@@ -6962,7 +6962,7 @@ Axis.prototype = {
 			cvsOffset = 0,
 			localA = old ? axis.oldTransA : axis.transA,
 			localMin = old ? axis.oldMin : axis.min,
-			returnValue,
+			preventDefault,
 			minPixelPadding = axis.minPixelPadding,
 			postTranslate = (axis.options.ordinal || (axis.isLog && handleLog)) && axis.lin2val;
 
@@ -6988,9 +6988,9 @@ Axis.prototype = {
 			
 			val = val * sign + cvsOffset;
 			val -= minPixelPadding;
-			returnValue = val / localA + localMin; // from chart pixel to value
+			preventDefault = val / localA + localMin; // from chart pixel to value
 			if (postTranslate) { // log and ordinal axes
-				returnValue = axis.lin2val(returnValue);
+				preventDefault = axis.lin2val(preventDefault);
 			}
 
 		// From value to pixels
@@ -6999,11 +6999,11 @@ Axis.prototype = {
 				val = axis.val2lin(val);
 			}
 
-			returnValue = sign * (val - localMin) * localA + cvsOffset + (sign * minPixelPadding) +
+			preventDefault = sign * (val - localMin) * localA + cvsOffset + (sign * minPixelPadding) +
 				(pointPlacementBetween ? localA * axis.pointRange / 2 : 0);
 		}
 
-		return returnValue;
+		return preventDefault;
 	},
 
 	/**
@@ -9481,7 +9481,7 @@ Pointer.prototype = {
 		e = this.normalize(e);
 
 		// #295
-		e.returnValue = false;
+		e.preventDefault = false;
 		
 		
 		if (chart.mouseIsDown === 'mousedown') {
