@@ -45,11 +45,11 @@
 	cursor: pointer;
 }
 .ui-tabs .ui-tabs-panel {
-	/*display: block;*/
+	display: block;/**/
 	border-width: 0;
 	padding: 1em 1.4em;
 	background: none;
 }
- .ui-tabs-hide {
-	display: none;
+.ui-tabs .ui-tabs-hide, .ui-tabs-panel .ui-tabs-hide {
+	display: none !important;
 }

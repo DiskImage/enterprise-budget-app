@@ -20,6 +20,10 @@
     <legend>Group</legend>
     <div class="display-label">
         <p>Current Members: Work in progress</p>
+        @foreach (var item in Model) 
+        {
+            Html.RenderPartial("~/Views/Group/_GroupUsers.cshtml", item);
+        }
     </div>
 </fieldset>
   </div>
