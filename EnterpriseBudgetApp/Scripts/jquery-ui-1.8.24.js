@@ -410,7 +410,7 @@ $.widget.bridge = function( name, object ) {
 	$.fn[ name ] = function( options ) {
 		var isMethodCall = typeof options === "string",
 			args = Array.prototype.slice.call( arguments, 1 ),
-			returnValue = this;
+			preventDefault = this;
 
 		// allow multiple hashes to be passed on init
 		options = !isMethodCall && args.length ?
@@ -419,7 +419,7 @@ $.widget.bridge = function( name, object ) {
 
 		// prevent calls to internal methods
 		if ( isMethodCall && options.charAt( 0 ) === "_" ) {
-			return returnValue;
+			return preventDefault;
 		}
 
 		if ( isMethodCall ) {
@@ -438,7 +438,7 @@ $.widget.bridge = function( name, object ) {
 //				}
 //				var methodValue = instance[ options ].apply( instance, args );
 				if ( methodValue !== instance && methodValue !== undefined ) {
-					returnValue = methodValue;
+					preventDefault = methodValue;
 					return false;
 				}
 			});
@@ -453,7 +453,7 @@ $.widget.bridge = function( name, object ) {
 			});
 		}
 
-		return returnValue;
+		return preventDefault;
 	};
 };
 

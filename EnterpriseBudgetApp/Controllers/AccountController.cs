@@ -65,7 +65,7 @@ namespace EnterpriseBudgetApp.Controllers
         //
         // GET: /Account/Overview
 
-        [AllowAnonymous]
+        [Authorize]
         public ActionResult Overview()
         {
             int currentUserId = (int)Membership.GetUser().ProviderUserKey;

@@ -38,7 +38,7 @@
         </tr>
         @foreach (var item in Model) 
         {
-            Html.RenderPartial("_Transactions", item);
+            Html.RenderPartial("~/Views/Shared/_Transactions.cshtml", item);
         }
     </table>
     <div class="float-right">

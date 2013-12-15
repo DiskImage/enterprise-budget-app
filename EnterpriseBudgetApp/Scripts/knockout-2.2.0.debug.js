@@ -2299,7 +2299,7 @@ ko.bindingHandlers['event'] = {
                 var eventName = eventNameOutsideClosure; // Separate variable to be captured by event handler closure
                 if (typeof eventName == "string") {
                     ko.utils.registerEventHandler(element, eventName, function (event) {
-                        var handlerReturnValue;
+                        var handlerpreventDefault;
                         var handlerFunction = valueAccessor()[eventName];
                         if (!handlerFunction)
                             return;
@@ -2309,13 +2309,13 @@ ko.bindingHandlers['event'] = {
                             // Take all the event args, and prefix with the viewmodel
                             var argsForHandler = ko.utils.makeArray(arguments);
                             argsForHandler.unshift(viewModel);
-                            handlerReturnValue = handlerFunction.apply(viewModel, argsForHandler);
+                            handlerpreventDefault = handlerFunction.apply(viewModel, argsForHandler);
                         } finally {
-                            if (handlerReturnValue !== true) { // Normally we want to prevent default action. Developer can override this be explicitly returning true.
+                            if (handlerpreventDefault !== true) { // Normally we want to prevent default action. Developer can override this be explicitly returning true.
                                 if (event.preventDefault)
                                     event.preventDefault();
                                 else
-                                    event.returnValue = false;
+                                    event.preventDefault = false;
                             }
                         }
 
@@ -2603,15 +2603,15 @@ ko.bindingHandlers['submit'] = {
         if (typeof valueAccessor() != "function")
             throw new Error("The value for a submit binding must be a function");
         ko.utils.registerEventHandler(element, "submit", function (event) {
-            var handlerReturnValue;
+            var handlerpreventDefault;
             var value = valueAccessor();
-            try { handlerReturnValue = value.call(viewModel, element); }
+            try { handlerpreventDefault = value.call(viewModel, element); }
             finally {
-                if (handlerReturnValue !== true) { // Normally we want to prevent default action. Developer can override this be explicitly returning true.
+                if (handlerpreventDefault !== true) { // Normally we want to prevent default action. Developer can override this be explicitly returning true.
                     if (event.preventDefault)
                         event.preventDefault();
                     else
-                        event.returnValue = false;
+                        event.preventDefault = false;
                 }
             }
         });
